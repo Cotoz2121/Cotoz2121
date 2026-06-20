@@ -8,12 +8,37 @@
    ========================================================================== */
 
 @media (max-width: 479px) {
+    .container {
+        padding-inline: var(--space-4);
+    }
+
     .entry-title {
-        font-size: var(--text-3xl);
+        font-size: var(--text-2xl);
     }
 
     .hero-title {
-        font-size: var(--text-3xl);
+        font-size: var(--text-2xl);
+    }
+
+    .hero-subtitle {
+        font-size: var(--text-base);
+    }
+
+    .hero-actions {
+        flex-direction: column;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .hero-visual {
+        display: none;
+    }
+
+    .section-title {
+        font-size: var(--text-xl);
     }
 
     .author-bio {
@@ -53,6 +78,22 @@
         flex-direction: column;
         text-align: center;
     }
+
+    .header-inner {
+        gap: var(--space-2);
+    }
+
+    .site-identity {
+        display: none;
+    }
+
+    .category-card {
+        padding: var(--space-4);
+    }
+
+    .card-content {
+        padding: var(--space-4);
+    }
 }
 
 /* ==========================================================================
@@ -62,6 +103,14 @@
 @media (min-width: 480px) and (max-width: 639px) {
     .featured-grid {
         grid-template-columns: 1fr;
+    }
+
+    .hero-title {
+        font-size: var(--text-3xl);
+    }
+
+    .hero-visual {
+        display: none;
     }
 
     .footer-widgets-grid {

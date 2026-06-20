@@ -1,4 +1,63 @@
 /* ==========================================================================
+   Top Bar
+   ========================================================================== */
+
+.top-bar {
+    background: var(--color-gray-900);
+    color: var(--color-gray-300);
+    font-size: var(--text-xs);
+    border-block-end: 1px solid var(--color-gray-800);
+}
+
+[data-theme="dark"] .top-bar {
+    background: var(--color-gray-950);
+    border-color: var(--color-gray-800);
+}
+
+.top-bar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 36px;
+    gap: var(--space-4);
+}
+
+.top-bar-menu {
+    display: flex;
+    list-style: none;
+    gap: var(--space-1);
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+.top-bar-menu li a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    padding: var(--space-1) var(--space-3);
+    color: var(--color-gray-300);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    white-space: nowrap;
+}
+
+.top-bar-menu li a:hover {
+    color: var(--color-white);
+}
+
+.top-bar-date {
+    color: var(--color-gray-400);
+    white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+    .top-bar {
+        display: none;
+    }
+}
+
+/* ==========================================================================
    Header Component
    ========================================================================== */
 
@@ -152,6 +211,8 @@
     display: none;
     align-items: center;
     gap: var(--space-2);
+    min-height: 48px;
+    min-width: 48px;
     padding: var(--space-2) var(--space-3);
     border: none;
     background: transparent;

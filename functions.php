@@ -14,7 +14,7 @@ if (! defined('ABSPATH')) {
 }
 
 /** Theme version */
-define('STARTER_AI_VERSION', '1.1.0');
+define('STARTER_AI_VERSION', '1.2.0');
 
 /** Theme directory path */
 define('STARTER_AI_DIR', get_template_directory());
@@ -70,7 +70,9 @@ function starter_ai_setup(): void
 
     register_nav_menus([
         'primary'  => esc_html__('Primary Menu', 'starter-ai'),
+        'top_bar'  => esc_html__('Top Bar Menu', 'starter-ai'),
         'footer'   => esc_html__('Footer Menu', 'starter-ai'),
+        'sidebar'  => esc_html__('Sidebar Menu', 'starter-ai'),
         'mobile'   => esc_html__('Mobile Menu', 'starter-ai'),
         'social'   => esc_html__('Social Links', 'starter-ai'),
     ]);
@@ -513,6 +515,8 @@ $theme_includes = [
     '/inc/ai-features.php',
     '/inc/performance.php',
     '/inc/widgets.php',
+    '/inc/patterns.php',
+    '/inc/admin-page.php',
 ];
 
 foreach ($theme_includes as $file) {

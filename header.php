@@ -29,6 +29,29 @@
     <?php esc_html_e('Skip to content', 'starter-ai'); ?>
 </a>
 
+<?php if (has_nav_menu('top_bar') && starter_ai_get_option('top_bar_enabled', true)) : ?>
+<div class="top-bar" role="navigation" aria-label="<?php esc_attr_e('Top Bar Navigation', 'starter-ai'); ?>">
+    <div class="container">
+        <div class="top-bar-inner">
+            <div class="top-bar-start">
+                <?php
+                wp_nav_menu([
+                    'theme_location' => 'top_bar',
+                    'menu_class'     => 'top-bar-menu',
+                    'container'      => false,
+                    'depth'          => 1,
+                    'fallback_cb'    => false,
+                ]);
+                ?>
+            </div>
+            <div class="top-bar-end">
+                <span class="top-bar-date"><?php echo esc_html(wp_date(get_option('date_format'))); ?></span>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+
 <header id="masthead" class="site-header" role="banner" itemscope itemtype="https://schema.org/WPHeader">
     <div class="container">
         <div class="header-inner">
