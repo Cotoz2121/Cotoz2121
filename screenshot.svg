@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8fafc"/>
+      <stop offset="30%" style="stop-color:#eff6ff"/>
+      <stop offset="60%" style="stop-color:#f5f3ff"/>
+      <stop offset="100%" style="stop-color:#f0f9ff"/>
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#f8fafc"/>
+    </linearGradient>
+    <linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2563eb;stop-opacity:0.08"/>
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:0.06"/>
+    </linearGradient>
+    <linearGradient id="satGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2563eb"/>
+      <stop offset="50%" style="stop-color:#7c3aed"/>
+      <stop offset="100%" style="stop-color:#06b6d4"/>
+    </linearGradient>
+    <linearGradient id="btnGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2563eb"/>
+      <stop offset="100%" style="stop-color:#3b82f6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="900" fill="url(#bgGrad)"/>
+
+  <!-- Header Bar -->
+  <rect width="1200" height="72" fill="url(#headerGrad)"/>
+  <line x1="0" y1="72" x2="1200" y2="72" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Logo in header -->
+  <g transform="translate(40, 14)">
+    <circle cx="22" cy="22" r="14" fill="url(#satGrad)"/>
+    <ellipse cx="22" cy="22" rx="24" ry="7" fill="none" stroke="#7c3aed" stroke-width="2" opacity="0.6" transform="rotate(-20, 22, 22)"/>
+    <text x="55" y="30" font-family="'Noto Sans Arabic', Arial" font-size="22" fill="#1e293b" font-weight="700">زحل</text>
+    <text x="100" y="30" font-family="Inter, system-ui" font-size="10" fill="#64748b" font-weight="500" letter-spacing="0.1em">ZUHAL</text>
+  </g>
+
+  <!-- Nav items -->
+  <text x="500" y="42" font-family="Inter, system-ui" font-size="14" fill="#475569">الرئيسية</text>
+  <text x="580" y="42" font-family="Inter, system-ui" font-size="14" fill="#475569">المقالات</text>
+  <text x="660" y="42" font-family="Inter, system-ui" font-size="14" fill="#475569">حول</text>
+  <text x="720" y="42" font-family="Inter, system-ui" font-size="14" fill="#475569">اتصل بنا</text>
+
+  <!-- Header action icons -->
+  <circle cx="1100" cy="36" r="16" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+  <circle cx="1140" cy="36" r="16" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+
+  <!-- Hero Section -->
+  <rect x="0" y="72" width="1200" height="350" fill="url(#heroGrad)"/>
+
+  <!-- Hero Title -->
+  <text x="100" y="200" font-family="'Noto Sans Arabic', Arial" font-size="48" fill="#0f172a" font-weight="800">زحل - Zuhal</text>
+  <text x="100" y="255" font-family="'Noto Sans Arabic', Arial" font-size="18" fill="#64748b" font-weight="400">منصتك المتطورة للمحتوى الذكي</text>
+  <text x="100" y="285" font-family="Inter, system-ui" font-size="16" fill="#94a3b8">Your Smart Content Platform</text>
+
+  <!-- CTA Buttons -->
+  <rect x="100" y="310" width="150" height="44" rx="8" fill="url(#btnGrad)"/>
+  <text x="175" y="337" font-family="Inter, system-ui" font-size="14" fill="white" text-anchor="middle" font-weight="600">Get Started</text>
+  <rect x="270" y="310" width="150" height="44" rx="8" fill="none" stroke="#2563eb" stroke-width="2"/>
+  <text x="345" y="337" font-family="Inter, system-ui" font-size="14" fill="#2563eb" text-anchor="middle" font-weight="600">Learn More</text>
+
+  <!-- Hero visual: Saturn -->
+  <g transform="translate(850, 130)">
+    <circle cx="120" cy="120" r="70" fill="url(#satGrad)" opacity="0.15"/>
+    <circle cx="120" cy="120" r="55" fill="url(#satGrad)" opacity="0.1"/>
+    <ellipse cx="120" cy="120" rx="120" ry="30" fill="none" stroke="#7c3aed" stroke-width="2" opacity="0.15" transform="rotate(-18, 120, 120)"/>
+  </g>
+
+  <!-- Featured Posts Section -->
+  <text x="100" y="480" font-family="'Noto Sans Arabic', Arial" font-size="24" fill="#0f172a" font-weight="700">أحدث المقالات</text>
+  <rect x="100" y="490" width="60" height="3" rx="2" fill="url(#btnGrad)"/>
+
+  <!-- Post Cards -->
+  <g transform="translate(100, 510)">
+    <!-- Card 1 -->
+    <rect width="310" height="220" rx="12" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+    <rect width="310" height="120" rx="12" fill="#dbeafe"/>
+    <rect x="12" y="130" width="50" height="20" rx="4" fill="#dbeafe"/>
+    <text x="12" y="170" font-family="'Noto Sans Arabic', Arial" font-size="14" fill="#1e293b" font-weight="600">عنوان المقالة الأولى</text>
+    <text x="12" y="195" font-family="'Noto Sans Arabic', Arial" font-size="11" fill="#94a3b8">هذا النص هو مثال لنص يمكن...</text>
+
+    <!-- Card 2 -->
+    <g transform="translate(340, 0)">
+      <rect width="310" height="220" rx="12" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+      <rect width="310" height="120" rx="12" fill="#ede9fe"/>
+      <rect x="12" y="130" width="50" height="20" rx="4" fill="#ede9fe"/>
+      <text x="12" y="170" font-family="'Noto Sans Arabic', Arial" font-size="14" fill="#1e293b" font-weight="600">عنوان المقالة الثانية</text>
+      <text x="12" y="195" font-family="'Noto Sans Arabic', Arial" font-size="11" fill="#94a3b8">هذا النص هو مثال لنص يمكن...</text>
+    </g>
+
+    <!-- Card 3 -->
+    <g transform="translate(680, 0)">
+      <rect width="310" height="220" rx="12" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+      <rect width="310" height="120" rx="12" fill="#cffafe"/>
+      <rect x="12" y="130" width="50" height="20" rx="4" fill="#cffafe"/>
+      <text x="12" y="170" font-family="'Noto Sans Arabic', Arial" font-size="14" fill="#1e293b" font-weight="600">عنوان المقالة الثالثة</text>
+      <text x="12" y="195" font-family="'Noto Sans Arabic', Arial" font-size="11" fill="#94a3b8">هذا النص هو مثال لنص يمكن...</text>
+    </g>
+  </g>
+
+  <!-- Footer -->
+  <rect x="0" y="800" width="1200" height="100" fill="#0f172a"/>
+  <text x="600" y="845" font-family="'Noto Sans Arabic', Arial" font-size="14" fill="#94a3b8" text-anchor="middle">© 2026 زحل | zuhalpost.com</text>
+  <text x="600" y="870" font-family="Inter, system-ui" font-size="11" fill="#475569" text-anchor="middle">Powered by Zuhal Theme - AI Ready WordPress Theme</text>
+</svg>

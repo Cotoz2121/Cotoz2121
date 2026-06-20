@@ -1,0 +1,87 @@
+/* ==========================================================================
+   RTL (Right-to-Left) Support
+   starter AI Theme
+   ========================================================================== */
+
+html[dir="rtl"] {
+    /* Font family for Arabic content */
+    --font-sans: 'Noto Sans Arabic', 'Segoe UI', Tahoma, Arial, sans-serif;
+}
+
+/* Direction-specific overrides */
+html[dir="rtl"] .breadcrumb-separator {
+    transform: scaleX(-1);
+}
+
+html[dir="rtl"] .post-navigation .nav-previous {
+    text-align: right;
+}
+
+html[dir="rtl"] .post-navigation .nav-next {
+    text-align: left;
+}
+
+html[dir="rtl"] .pagination-nav .page-numbers li a .prev-arrow,
+html[dir="rtl"] .pagination-nav .page-numbers li a .next-arrow {
+    transform: scaleX(-1);
+}
+
+/* Search form RTL */
+html[dir="rtl"] .search-field {
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    border-inline-start: none;
+    border-inline-end: 1px solid var(--color-border);
+}
+
+html[dir="rtl"] .search-submit {
+    border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+/* Navigation RTL */
+html[dir="rtl"] .primary-menu-list .sub-menu {
+    left: auto;
+    right: 0;
+}
+
+html[dir="rtl"] .primary-menu-list .sub-menu .sub-menu {
+    left: auto;
+    right: 100%;
+}
+
+/* Hamburger menu alignment */
+html[dir="rtl"] .header-inner {
+    flex-direction: row-reverse;
+}
+
+/* Entry meta alignment */
+html[dir="rtl"] .entry-meta {
+    flex-direction: row-reverse;
+}
+
+/* Blockquote border - uses logical properties from base styles, no override needed */
+
+/* Comment list indentation - uses logical properties from base styles, no override needed */
+
+/* Widget list - uses logical properties from base styles, no override needed */
+
+/* Back to top - position */
+html[dir="rtl"] .back-to-top {
+    left: var(--space-6);
+    right: auto;
+}
+
+/* Mobile nav */
+html[dir="rtl"] .mobile-nav-overlay .mobile-nav-inner {
+    right: auto;
+    left: 0;
+    transform: translateX(-100%);
+}
+
+html[dir="rtl"] .mobile-nav-overlay.is-active .mobile-nav-inner {
+    transform: translateX(0);
+}
+
+/* Footer */
+html[dir="rtl"] .footer-bottom-inner {
+    flex-direction: row-reverse;
+}
