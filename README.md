@@ -1,6 +1,10 @@
-# starter AI Theme - Advanced WordPress Theme
+# زحل - Zuhal Theme | قالب زحل لووردبريس
 
-Advanced WordPress theme built with the latest web technologies, AI integration, full SEO optimization, and responsive design.
+**zuhalpost.com**
+
+قالب ووردبريس متطور بأحدث تقنيات البرمجة، متوافق مع الذكاء الاصطناعي وتطورات جوجل الذكية، متجاوب مع جميع الأجهزة، ومتوافق مع SEO.
+
+Advanced WordPress theme with AI integration, SEO optimization, responsive design, and Google smart features.
 
 ## Features
 
@@ -71,17 +75,18 @@ Advanced WordPress theme built with the latest web technologies, AI integration,
 - 4 footer widget areas
 - 4 navigation menu locations
 
-## Installation
+## التثبيت | Installation
 
-1. Download or clone this repository
-2. Copy to `wp-content/themes/starter-ai/`
-3. Activate through WordPress Admin > Appearance > Themes
-4. Configure via Appearance > Customize
+1. حمّل القالب / Download the theme
+2. انسخ الملفات إلى `wp-content/themes/starter-ai/`
+3. فعّل القالب من Appearance > Themes
+4. خصّص من Appearance > Customize
 
-## Requirements
+## المتطلبات | Requirements
 
 - WordPress 6.4+
 - PHP 8.2+
+- موقع: zuhalpost.com
 
 ## Customizer Sections
 
@@ -130,6 +135,10 @@ starter-ai/
 └── languages/             # Translation files
 ```
 
-## License
+## الترخيص | License
 
 GNU General Public License v2 or later
+
+---
+
+**زحل - Zuhal** | zuhalpost.com

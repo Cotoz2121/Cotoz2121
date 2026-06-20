@@ -52,6 +52,7 @@
                             <?php bloginfo('name'); ?>
                         </a>.
                         <?php esc_html_e('All rights reserved.', 'starter-ai'); ?>
+                        | <span class="footer-brand">zuhalpost.com</span>
                     </p>
                 </div>
 

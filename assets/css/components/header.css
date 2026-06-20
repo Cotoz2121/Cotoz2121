@@ -38,8 +38,26 @@
 }
 
 .site-logo img {
-    height: 40px;
+    height: 44px;
     width: auto;
+}
+
+/* Zuhal Logo - Light/Dark switching */
+.zuhal-logo-link {
+    display: inline-flex;
+    align-items: center;
+}
+
+.zuhal-logo-dark {
+    display: none;
+}
+
+[data-theme="dark"] .zuhal-logo-light {
+    display: none;
+}
+
+[data-theme="dark"] .zuhal-logo-dark {
+    display: block;
 }
 
 .site-title {

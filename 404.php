@@ -14,6 +14,12 @@ get_header();
 
         <section class="error-404 not-found">
             <div class="error-content text-center">
+                <div class="error-illustration">
+                    <img src="<?php echo esc_url(STARTER_AI_URI . '/assets/images/404-illustration.svg'); ?>"
+                         alt="<?php esc_attr_e('Page not found', 'starter-ai'); ?>"
+                         width="400" height="267" loading="eager">
+                </div>
+
                 <div class="error-code">
                     <span class="error-number">404</span>
                 </div>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 60" fill="none">
+  <defs>
+    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2563eb"/>
+      <stop offset="50%" style="stop-color:#7c3aed"/>
+      <stop offset="100%" style="stop-color:#06b6d4"/>
+    </linearGradient>
+    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0.6"/>
+    </linearGradient>
+  </defs>
+  <!-- Saturn Planet Icon -->
+  <g transform="translate(8, 8)">
+    <!-- Planet body -->
+    <circle cx="22" cy="22" r="14" fill="url(#logoGrad)"/>
+    <!-- Ring -->
+    <ellipse cx="22" cy="22" rx="28" ry="8" fill="none" stroke="url(#ringGrad)" stroke-width="2.5" transform="rotate(-20, 22, 22)"/>
+    <!-- Planet highlight -->
+    <circle cx="18" cy="17" r="4" fill="rgba(255,255,255,0.25)"/>
+    <!-- Stars -->
+    <circle cx="4" cy="6" r="1" fill="#7c3aed" opacity="0.6"/>
+    <circle cx="40" cy="8" r="0.8" fill="#06b6d4" opacity="0.5"/>
+    <circle cx="38" cy="36" r="1.2" fill="#2563eb" opacity="0.4"/>
+  </g>
+  <!-- Arabic Text: زحل -->
+  <text x="70" y="42" font-family="'Noto Sans Arabic', 'Segoe UI', Tahoma, Arial, sans-serif" font-size="36" font-weight="700" fill="url(#logoGrad)" direction="rtl" unicode-bidi="bidi-override">زحل</text>
+  <!-- English subtitle -->
+  <text x="148" y="42" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#64748b" letter-spacing="0.1em">ZUHAL</text>
+</svg>

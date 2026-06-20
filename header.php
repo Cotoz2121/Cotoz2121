@@ -15,6 +15,8 @@
     <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#020617" media="(prefers-color-scheme: dark)">
     <meta name="color-scheme" content="light dark">
+    <link rel="icon" type="image/svg+xml" href="<?php echo esc_url(STARTER_AI_URI . '/assets/images/favicon.svg'); ?>">
+    <link rel="apple-touch-icon" href="<?php echo esc_url(STARTER_AI_URI . '/assets/images/favicon.svg'); ?>">
     <link rel="profile" href="https://gmpg.org/xfn/11">
 
     <?php wp_head(); ?>
@@ -36,6 +38,19 @@
                 <?php if (has_custom_logo()) : ?>
                     <div class="site-logo">
                         <?php the_custom_logo(); ?>
+                    </div>
+                <?php else : ?>
+                    <div class="site-logo">
+                        <a href="<?php echo esc_url(home_url('/')); ?>" rel="home" class="zuhal-logo-link">
+                            <img src="<?php echo esc_url(STARTER_AI_URI . '/assets/images/logo-zuhal.svg'); ?>"
+                                 alt="<?php bloginfo('name'); ?>"
+                                 class="zuhal-logo zuhal-logo-light"
+                                 width="200" height="44" loading="eager">
+                            <img src="<?php echo esc_url(STARTER_AI_URI . '/assets/images/logo-zuhal-dark.svg'); ?>"
+                                 alt="<?php bloginfo('name'); ?>"
+                                 class="zuhal-logo zuhal-logo-dark"
+                                 width="200" height="44" loading="eager">
+                        </a>
                     </div>
                 <?php endif; ?>
 

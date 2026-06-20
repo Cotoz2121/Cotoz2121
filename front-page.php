@@ -17,7 +17,7 @@ get_header();
             <div class="hero-content">
                 <h1 id="hero-title" class="hero-title">
                     <?php
-                    $hero_title = get_theme_mod('starter_ai_hero_title', get_bloginfo('name'));
+                    $hero_title = get_theme_mod('starter_ai_hero_title', 'زحل - Zuhal');
                     echo esc_html($hero_title);
                     ?>
                 </h1>
@@ -25,7 +25,7 @@ get_header();
                     <?php
                     $hero_subtitle = get_theme_mod(
                         'starter_ai_hero_subtitle',
-                        get_bloginfo('description')
+                        esc_html__('منصتك المتطورة للمحتوى الذكي - Your Smart Content Platform', 'starter-ai')
                     );
                     echo esc_html($hero_subtitle);
                     ?>
@@ -58,11 +58,23 @@ get_header();
                                     <stop offset="0%" style="stop-color:var(--color-primary);stop-opacity:0.2" />
                                     <stop offset="100%" style="stop-color:var(--color-secondary);stop-opacity:0.1" />
                                 </linearGradient>
+                                <linearGradient id="saturnGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#2563eb;stop-opacity:0.4" />
+                                    <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:0.3" />
+                                </linearGradient>
                             </defs>
                             <rect width="400" height="400" fill="url(#heroGrad)" rx="20"/>
-                            <circle cx="200" cy="200" r="80" fill="none" stroke="var(--color-primary)" stroke-width="2" opacity="0.3"/>
-                            <circle cx="200" cy="200" r="120" fill="none" stroke="var(--color-secondary)" stroke-width="1" opacity="0.2"/>
-                            <circle cx="200" cy="200" r="160" fill="none" stroke="var(--color-accent)" stroke-width="0.5" opacity="0.1"/>
+                            <!-- Saturn planet -->
+                            <circle cx="200" cy="180" r="60" fill="url(#saturnGrad)"/>
+                            <ellipse cx="200" cy="180" rx="110" ry="25" fill="none" stroke="var(--color-secondary)" stroke-width="3" opacity="0.3" transform="rotate(-18, 200, 180)"/>
+                            <circle cx="185" cy="165" r="15" fill="rgba(255,255,255,0.15)"/>
+                            <!-- Orbiting dots -->
+                            <circle cx="80" cy="100" r="4" fill="var(--color-primary)" opacity="0.2"/>
+                            <circle cx="320" cy="80" r="3" fill="var(--color-secondary)" opacity="0.15"/>
+                            <circle cx="100" cy="300" r="5" fill="var(--color-accent)" opacity="0.1"/>
+                            <circle cx="300" cy="320" r="3.5" fill="var(--color-primary)" opacity="0.12"/>
+                            <!-- Arabic text -->
+                            <text x="200" y="300" font-family="'Noto Sans Arabic', Arial" font-size="28" fill="var(--color-primary)" text-anchor="middle" opacity="0.15" font-weight="700">زحل</text>
                         </svg>
                     </div>
                 <?php endif; ?>

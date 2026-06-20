@@ -14,7 +14,7 @@ if (! defined('ABSPATH')) {
 }
 
 /** Theme version */
-define('STARTER_AI_VERSION', '1.0.0');
+define('STARTER_AI_VERSION', '1.1.0');
 
 /** Theme directory path */
 define('STARTER_AI_DIR', get_template_directory());
@@ -124,10 +124,10 @@ add_action('widgets_init', 'starter_ai_widgets_init');
  */
 function starter_ai_scripts(): void
 {
-    // Google Fonts - Inter + Merriweather
+    // Google Fonts - Async loading for speed
     wp_enqueue_style(
         'starter-ai-fonts',
-        'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Noto+Sans+Arabic:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap',
+        'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+Arabic:wght@400;600;700&display=swap',
         [],
         null
     );
@@ -140,9 +140,9 @@ function starter_ai_scripts(): void
         STARTER_AI_VERSION
     );
 
-    // Component styles
-    $components = ['header', 'footer', 'cards', 'navigation', 'hero', 'forms'];
-    foreach ($components as $component) {
+    // Combined component styles (loaded conditionally for speed)
+    $critical_components = ['header', 'navigation', 'forms'];
+    foreach ($critical_components as $component) {
         wp_enqueue_style(
             "starter-ai-{$component}",
             STARTER_AI_URI . "/assets/css/components/{$component}.css",
@@ -150,6 +150,13 @@ function starter_ai_scripts(): void
             STARTER_AI_VERSION
         );
     }
+
+    // Non-critical components loaded conditionally
+    if (is_front_page()) {
+        wp_enqueue_style('starter-ai-hero', STARTER_AI_URI . '/assets/css/components/hero.css', ['starter-ai-main'], STARTER_AI_VERSION);
+    }
+    wp_enqueue_style('starter-ai-footer', STARTER_AI_URI . '/assets/css/components/footer.css', ['starter-ai-main'], STARTER_AI_VERSION);
+    wp_enqueue_style('starter-ai-cards', STARTER_AI_URI . '/assets/css/components/cards.css', ['starter-ai-main'], STARTER_AI_VERSION);
 
     // Responsive stylesheet
     wp_enqueue_style(
@@ -186,14 +193,7 @@ function starter_ai_scripts(): void
         ['in_footer' => true, 'strategy' => 'defer']
     );
 
-    // Navigation module
-    wp_enqueue_script(
-        'starter-ai-navigation',
-        STARTER_AI_URI . '/assets/js/modules/navigation.js',
-        [],
-        STARTER_AI_VERSION,
-        ['in_footer' => true, 'strategy' => 'defer']
-    );
+
 
     if (is_singular() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');

@@ -43,12 +43,12 @@ function starter_ai_customize_register(WP_Customize_Manager $wp_customize): void
     $hero_settings = [
         'starter_ai_hero_title' => [
             'label'   => esc_html__('Hero Title', 'starter-ai'),
-            'default' => get_bloginfo('name'),
+            'default' => 'زحل - Zuhal',
             'type'    => 'text',
         ],
         'starter_ai_hero_subtitle' => [
             'label'   => esc_html__('Hero Subtitle', 'starter-ai'),
-            'default' => get_bloginfo('description'),
+            'default' => 'منصتك المتطورة للمحتوى الذكي - Your Smart Content Platform',
             'type'    => 'textarea',
         ],
         'starter_ai_cta_text' => [
