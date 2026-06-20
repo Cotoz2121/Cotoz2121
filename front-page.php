@@ -118,10 +118,17 @@ get_header();
                     <a href="<?php the_permalink(); ?>" class="card-thumbnail" aria-label="<?php the_title_attribute(); ?>">
                         <?php
                         $img_size = $counter === 1 ? 'starter-ai-featured' : 'starter-ai-card';
-                        the_post_thumbnail($img_size, [
-                            'loading' => $counter <= 2 ? 'eager' : 'lazy',
+                        $img_attrs = [
+                            'loading'  => $counter === 1 ? 'eager' : 'lazy',
                             'itemprop' => 'image',
-                        ]);
+                            'sizes'    => $counter === 1
+                                ? '(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 768px'
+                                : '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 384px',
+                        ];
+                        if ($counter === 1) {
+                            $img_attrs['fetchpriority'] = 'high';
+                        }
+                        the_post_thumbnail($img_size, $img_attrs);
                         ?>
                     </a>
                     <?php endif; ?>

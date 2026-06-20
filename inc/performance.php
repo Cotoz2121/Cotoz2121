@@ -256,6 +256,47 @@ function starter_ai_lcp_image_priority(array $attr, WP_Post $attachment, string 
 add_filter('wp_get_attachment_image_attributes', 'starter_ai_lcp_image_priority', 10, 3);
 
 /**
+ * Preload LCP image on front page.
+ */
+function starter_ai_preload_lcp_image(): void
+{
+    if (! is_front_page()) {
+        return;
+    }
+
+    $recent = get_posts([
+        'numberposts'  => 1,
+        'post_status'  => 'publish',
+        'no_found_rows' => true,
+    ]);
+
+    if (empty($recent)) {
+        return;
+    }
+
+    $thumb_id = get_post_thumbnail_id($recent[0]);
+    if (! $thumb_id) {
+        return;
+    }
+
+    $img = wp_get_attachment_image_src((int) $thumb_id, 'starter-ai-featured');
+    if (! $img) {
+        return;
+    }
+
+    $srcset = wp_get_attachment_image_srcset((int) $thumb_id, 'starter-ai-featured');
+    $sizes  = '(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 768px';
+
+    echo '<link rel="preload" as="image" href="' . esc_url($img[0]) . '"';
+    if ($srcset) {
+        echo ' imagesrcset="' . esc_attr($srcset) . '"';
+        echo ' imagesizes="' . esc_attr($sizes) . '"';
+    }
+    echo ' fetchpriority="high">' . "\n";
+}
+add_action('wp_head', 'starter_ai_preload_lcp_image', 3);
+
+/**
  * Disable jQuery migrate for faster loading.
  */
 function starter_ai_remove_jquery_migrate(WP_Scripts $scripts): void
