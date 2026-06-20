@@ -40,6 +40,19 @@ function starter_ai_customize_register(WP_Customize_Manager $wp_customize): void
         'priority' => 30,
     ]);
 
+    // Hero Section Toggle
+    $wp_customize->add_setting('starter_ai_hero_enabled', [
+        'default'           => true,
+        'sanitize_callback' => 'wp_validate_boolean',
+        'transport'         => 'refresh',
+    ]);
+
+    $wp_customize->add_control('starter_ai_hero_enabled', [
+        'label'   => esc_html__('Enable Hero Section', 'starter-ai'),
+        'section' => 'starter_ai_hero',
+        'type'    => 'checkbox',
+    ]);
+
     $hero_settings = [
         'starter_ai_hero_title' => [
             'label'   => esc_html__('Hero Title', 'starter-ai'),

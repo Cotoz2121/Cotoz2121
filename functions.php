@@ -159,7 +159,7 @@ function starter_ai_scripts(): void
     }
 
     // Non-critical components loaded conditionally
-    if (is_front_page()) {
+    if (is_front_page() && get_theme_mod('starter_ai_hero_enabled', true)) {
         wp_enqueue_style('starter-ai-hero', STARTER_AI_URI . '/assets/css/components/hero.css', ['starter-ai-main'], STARTER_AI_VERSION);
     }
     wp_enqueue_style('starter-ai-footer', STARTER_AI_URI . '/assets/css/components/footer.css', ['starter-ai-main'], STARTER_AI_VERSION);
@@ -429,6 +429,81 @@ function starter_ai_post_navigation(): void
         'next_text' => '<span class="nav-subtitle">' . esc_html__('Next Post', 'starter-ai') . '</span><span class="nav-title">%title</span>',
     ]);
 }
+
+/**
+ * Serve llms.txt for AI agent accessibility.
+ */
+function starter_ai_llms_txt(): void
+{
+    add_rewrite_rule('^llms\.txt$', 'index.php?starter_ai_llms=1', 'top');
+}
+add_action('init', 'starter_ai_llms_txt');
+
+function starter_ai_llms_query_vars(array $vars): array
+{
+    $vars[] = 'starter_ai_llms';
+    return $vars;
+}
+add_filter('query_vars', 'starter_ai_llms_query_vars');
+
+function starter_ai_llms_template_redirect(): void
+{
+    if (! get_query_var('starter_ai_llms')) {
+        return;
+    }
+
+    header('Content-Type: text/plain; charset=utf-8');
+    header('Cache-Control: public, max-age=86400');
+
+    $site_name = get_bloginfo('name');
+    $site_desc = get_bloginfo('description');
+    $site_url = home_url('/');
+
+    echo "# {$site_name}\n\n";
+    echo "> {$site_desc}\n\n";
+    echo "This file provides information about {$site_name} for AI agents and LLMs.\n\n";
+    echo "## Site Information\n\n";
+    echo "- URL: {$site_url}\n";
+    echo "- Language: " . get_bloginfo('language') . "\n";
+    echo "- Content Type: Blog / News\n\n";
+    echo "## Content Structure\n\n";
+    echo "- Homepage: {$site_url}\n";
+    echo "- RSS Feed: " . get_feed_link() . "\n";
+    echo "- Sitemap: {$site_url}wp-sitemap.xml\n\n";
+
+    $categories = get_categories(['hide_empty' => true]);
+    if (! empty($categories)) {
+        echo "## Categories\n\n";
+        foreach ($categories as $cat) {
+            echo "- [{$cat->name}](" . get_category_link($cat->term_id) . "): {$cat->description}\n";
+        }
+        echo "\n";
+    }
+
+    echo "## Recent Articles\n\n";
+    $recent = new WP_Query([
+        'posts_per_page' => 10,
+        'post_status'    => 'publish',
+        'no_found_rows'  => true,
+    ]);
+    while ($recent->have_posts()) {
+        $recent->the_post();
+        echo '- [' . get_the_title() . '](' . get_permalink() . '): ' . wp_trim_words(get_the_excerpt(), 20) . "\n";
+    }
+    wp_reset_postdata();
+
+    exit;
+}
+add_action('template_redirect', 'starter_ai_llms_template_redirect');
+
+/**
+ * Add llms.txt link to HTML head.
+ */
+function starter_ai_llms_head_link(): void
+{
+    echo '<link rel="llms-txt" href="' . esc_url(home_url('/llms.txt')) . '">' . "\n";
+}
+add_action('wp_head', 'starter_ai_llms_head_link', 1);
 
 // Include theme modules
 $theme_includes = [

@@ -12,6 +12,7 @@ get_header();
 <main id="primary" class="site-main content-area front-page" role="main">
 
     <!-- Hero Section -->
+    <?php if (get_theme_mod('starter_ai_hero_enabled', true)) : ?>
     <section class="hero-section" aria-labelledby="hero-title">
         <div class="container">
             <div class="hero-content">
@@ -81,6 +82,7 @@ get_header();
             </div>
         </div>
     </section>
+    <?php endif; ?>
 
     <!-- Featured Posts Section -->
     <section id="featured-posts" class="featured-section" aria-labelledby="featured-heading">

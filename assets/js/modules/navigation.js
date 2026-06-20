@@ -20,6 +20,7 @@ export function initNavigation(signal) {
         const openMenu = () => {
             mobileOverlay.classList.add('is-active');
             mobileOverlay.setAttribute('aria-hidden', 'false');
+            mobileOverlay.removeAttribute('inert');
             menuToggle.setAttribute('aria-expanded', 'true');
             document.body.style.overflow = 'hidden';
 
@@ -31,6 +32,7 @@ export function initNavigation(signal) {
         const closeMenu = () => {
             mobileOverlay.classList.remove('is-active');
             mobileOverlay.setAttribute('aria-hidden', 'true');
+            mobileOverlay.setAttribute('inert', '');
             menuToggle.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = '';
             menuToggle.focus();
@@ -82,8 +84,11 @@ export function initNavigation(signal) {
             searchToggle.setAttribute('aria-expanded', String(isActive));
 
             if (isActive) {
+                searchOverlay.removeAttribute('inert');
                 const input = searchOverlay.querySelector('.search-field');
                 input?.focus();
+            } else {
+                searchOverlay.setAttribute('inert', '');
             }
         }, { signal });
 
@@ -92,6 +97,7 @@ export function initNavigation(signal) {
             if (e.key === 'Escape' && searchOverlay.classList.contains('is-active')) {
                 searchOverlay.classList.remove('is-active');
                 searchOverlay.setAttribute('aria-hidden', 'true');
+                searchOverlay.setAttribute('inert', '');
                 searchToggle.setAttribute('aria-expanded', 'false');
                 searchToggle.focus();
             }
@@ -140,6 +146,7 @@ export function initNavigation(signal) {
         if (e.matches && mobileOverlay?.classList.contains('is-active')) {
             mobileOverlay.classList.remove('is-active');
             mobileOverlay.setAttribute('aria-hidden', 'true');
+            mobileOverlay.setAttribute('inert', '');
             menuToggle?.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = '';
         }

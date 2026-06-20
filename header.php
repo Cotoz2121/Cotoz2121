@@ -143,7 +143,7 @@
     </div>
 
     <!-- Search Overlay -->
-    <div id="header-search" class="search-overlay" role="search" aria-hidden="true">
+    <div id="header-search" class="search-overlay" role="search" aria-hidden="true" inert>
         <div class="container">
             <?php get_search_form(); ?>
         </div>
@@ -151,7 +151,7 @@
 </header>
 
 <!-- Mobile Navigation Overlay -->
-<div class="mobile-nav-overlay" aria-hidden="true">
+<div class="mobile-nav-overlay" aria-hidden="true" inert>
     <div class="mobile-nav-inner">
         <button class="mobile-nav-close" aria-label="<?php esc_attr_e('Close menu', 'starter-ai'); ?>">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"

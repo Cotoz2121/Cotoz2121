@@ -77,6 +77,32 @@ function starter_ai_async_google_fonts(string $tag, string $handle): string
 add_filter('style_loader_tag', 'starter_ai_async_google_fonts', 10, 2);
 
 /**
+ * Make non-critical CSS non-render-blocking.
+ */
+function starter_ai_async_noncritical_css(string $tag, string $handle): string
+{
+    $async_handles = ['starter-ai-footer', 'starter-ai-cards', 'starter-ai-responsive'];
+
+    if (! in_array($handle, $async_handles, true)) {
+        return $tag;
+    }
+
+    $tag = str_replace(
+        "rel='stylesheet'",
+        "rel='preload' as='style' onload=\"this.onload=null;this.rel='stylesheet'\"",
+        $tag
+    );
+
+    $href = preg_match('/href=[\'"]([^\'"]+)[\'"]/', $tag, $m) ? $m[1] : '';
+    if ($href) {
+        $tag .= '<noscript><link rel="stylesheet" href="' . esc_url($href) . '"></noscript>' . "\n";
+    }
+
+    return $tag;
+}
+add_filter('style_loader_tag', 'starter_ai_async_noncritical_css', 10, 2);
+
+/**
  * Inline critical CSS for above-the-fold content.
  */
 function starter_ai_critical_css(): void
@@ -360,3 +386,19 @@ function starter_ai_disable_self_pingback(array &$links): void
     }
 }
 add_action('pre_ping', 'starter_ai_disable_self_pingback');
+
+/**
+ * Add cache-control headers for theme assets.
+ */
+function starter_ai_cache_headers(): void
+{
+    if (is_admin()) {
+        return;
+    }
+
+    $request_uri = $_SERVER['REQUEST_URI'] ?? '';
+    if (preg_match('/\.(css|js|svg|png|jpg|jpeg|webp|avif|woff2?)$/i', $request_uri)) {
+        header('Cache-Control: public, max-age=31536000, immutable');
+    }
+}
+add_action('send_headers', 'starter_ai_cache_headers');
