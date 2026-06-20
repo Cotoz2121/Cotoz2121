@@ -1,0 +1,298 @@
+/* ==========================================================================
+   Responsive Design - Mobile First Approach
+   starter AI Theme
+   ========================================================================== */
+
+/* ==========================================================================
+   Extra Small (< 480px) - Small phones
+   ========================================================================== */
+
+@media (max-width: 479px) {
+    .entry-title {
+        font-size: var(--text-3xl);
+    }
+
+    .hero-title {
+        font-size: var(--text-3xl);
+    }
+
+    .author-bio {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .entry-share {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .share-buttons {
+        width: 100%;
+    }
+
+    .share-btn {
+        flex: 1;
+        justify-content: center;
+        font-size: var(--text-xs);
+        padding: var(--space-2) var(--space-3);
+    }
+
+    .post-navigation .nav-links {
+        grid-template-columns: 1fr;
+    }
+
+    .featured-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-widgets-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-bottom-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* ==========================================================================
+   Small (480px - 639px) - Large phones
+   ========================================================================== */
+
+@media (min-width: 480px) and (max-width: 639px) {
+    .featured-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-widgets-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ==========================================================================
+   Medium (640px - 767px) - Small tablets
+   ========================================================================== */
+
+@media (min-width: 640px) and (max-width: 767px) {
+    .featured-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-widgets-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ==========================================================================
+   Tablet (768px - 1023px)
+   ========================================================================== */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .featured-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .featured-card-large {
+        grid-column: span 2;
+    }
+
+    .categories-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .footer-widgets-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ==========================================================================
+   Desktop (1024px+)
+   ========================================================================== */
+
+@media (min-width: 1024px) {
+    .featured-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .featured-card-large {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+
+    .featured-card-large .card-thumbnail {
+        aspect-ratio: auto;
+        height: 100%;
+    }
+
+    .categories-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .footer-widgets-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .site-content.has-sidebar {
+        display: grid;
+        grid-template-columns: 1fr var(--sidebar-width);
+        gap: var(--space-8);
+    }
+}
+
+/* ==========================================================================
+   Large Desktop (1400px+)
+   ========================================================================== */
+
+@media (min-width: 1400px) {
+    .container {
+        max-width: var(--container-2xl);
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+    *,
+    *::before,
+    *::after {
+        background: transparent !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    .site-header,
+    .site-footer,
+    .sidebar,
+    .back-to-top,
+    .entry-share,
+    .related-posts,
+    .comments-area,
+    .pagination-nav,
+    .post-navigation,
+    .search-overlay,
+    .mobile-nav-overlay,
+    .menu-toggle,
+    .dark-mode-toggle,
+    .search-toggle {
+        display: none !important;
+    }
+
+    body {
+        font-size: 12pt;
+        line-height: 1.5;
+    }
+
+    .entry-title {
+        font-size: 24pt;
+    }
+
+    a[href]::after {
+        content: " (" attr(href) ")";
+        font-size: 0.8em;
+        color: #666;
+    }
+
+    img {
+        max-width: 100% !important;
+        page-break-inside: avoid;
+    }
+
+    h2, h3 {
+        page-break-after: avoid;
+    }
+}
+
+/* ==========================================================================
+   High DPI / Retina
+   ========================================================================== */
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .site-logo img {
+        image-rendering: -webkit-optimize-contrast;
+    }
+}
+
+/* ==========================================================================
+   Touch Device Optimizations
+   ========================================================================== */
+
+@media (hover: none) and (pointer: coarse) {
+    .post-card:hover {
+        transform: none;
+    }
+
+    .post-card:hover .card-thumbnail img {
+        transform: none;
+    }
+
+    .btn,
+    .menu-toggle,
+    .search-toggle,
+    .dark-mode-toggle,
+    .back-to-top {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    .primary-menu-list a,
+    .mobile-menu-list a {
+        padding: var(--space-3) var(--space-4);
+    }
+}
+
+/* ==========================================================================
+   Landscape orientation adjustments
+   ========================================================================== */
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero-section {
+        padding-block: var(--space-8);
+    }
+
+    .hero-title {
+        font-size: var(--text-3xl);
+    }
+
+    .hero-visual {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   Dark Mode Media Query (system preference)
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+    html:not([data-theme="light"]) {
+        --color-bg: var(--color-gray-950);
+        --color-bg-secondary: var(--color-gray-900);
+        --color-bg-tertiary: var(--color-gray-800);
+        --color-text: var(--color-gray-100);
+        --color-text-secondary: var(--color-gray-400);
+        --color-text-muted: var(--color-gray-500);
+        --color-border: var(--color-gray-700);
+        --color-link: var(--color-primary-light);
+        --color-link-hover: var(--color-primary);
+    }
+}
+
+/* ==========================================================================
+   Contrast preferences
+   ========================================================================== */
+
+@media (prefers-contrast: high) {
+    :root {
+        --color-text: #000000;
+        --color-text-secondary: #333333;
+        --color-border: #000000;
+    }
+
+    .post-card,
+    .widget,
+    .related-card {
+        border-width: 2px;
+    }
+}

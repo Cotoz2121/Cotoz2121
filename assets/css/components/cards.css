@@ -1,0 +1,85 @@
+/* ==========================================================================
+   Cards Component - Additional card styles
+   ========================================================================== */
+
+/* Container Query for cards */
+@container (max-width: 300px) {
+    .post-card .card-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-1);
+    }
+
+    .post-card .card-title {
+        font-size: var(--text-base);
+    }
+}
+
+@container (min-width: 400px) {
+    .post-card .card-content {
+        padding: var(--space-6);
+    }
+
+    .post-card .card-title {
+        font-size: var(--text-2xl);
+    }
+}
+
+/* Card hover effects */
+.post-card,
+.featured-card,
+.related-card {
+    position: relative;
+}
+
+.post-card::after,
+.featured-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity var(--transition-base);
+    pointer-events: none;
+    box-shadow: 0 0 0 2px var(--color-primary);
+}
+
+.post-card:focus-within::after,
+.featured-card:focus-within::after {
+    opacity: 1;
+}
+
+/* Card skeleton loading */
+.card-skeleton {
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+}
+
+.card-skeleton .skeleton-thumbnail {
+    aspect-ratio: 16 / 10;
+    background: linear-gradient(
+        90deg,
+        var(--color-bg-tertiary) 25%,
+        var(--color-bg-secondary) 50%,
+        var(--color-bg-tertiary) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+.card-skeleton .skeleton-line {
+    height: 16px;
+    background: var(--color-bg-tertiary);
+    border-radius: var(--radius-sm);
+    margin: var(--space-3) var(--space-5);
+}
+
+.card-skeleton .skeleton-line.short {
+    width: 60%;
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
