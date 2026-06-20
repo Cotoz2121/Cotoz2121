@@ -140,12 +140,13 @@ function starter_ai_discover_optimization(): void
     }
 
     // Ensure high-quality image metadata for Google Discover
+    // Note: max-image-preview:large is already output by starter_ai_output_robots_meta via googlebot meta
     if (has_post_thumbnail($post)) {
         $image_id = get_post_thumbnail_id($post);
         $image_meta = wp_get_attachment_metadata($image_id);
 
         if ($image_meta && isset($image_meta['width']) && $image_meta['width'] >= 1200) {
-            echo '<meta name="robots" content="max-image-preview:large">' . "\n";
+            echo '<link rel="preload" as="image" href="' . esc_url(wp_get_attachment_image_url($image_id, 'starter-ai-featured')) . '">' . "\n";
         }
     }
 }

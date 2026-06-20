@@ -53,6 +53,7 @@ get_header();
                         $recent_posts = new WP_Query([
                             'posts_per_page' => 5,
                             'post_status'    => 'publish',
+                            'no_found_rows'  => true,
                         ]);
 
                         if ($recent_posts->have_posts()) :

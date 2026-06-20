@@ -17,12 +17,12 @@ if (! defined('ABSPATH')) {
  */
 function starter_ai_schema_output(): void
 {
-    if (is_singular('post')) {
+    if (is_front_page()) {
+        starter_ai_organization_schema();
+    } elseif (is_singular('post')) {
         starter_ai_article_schema();
     } elseif (is_page()) {
         starter_ai_webpage_schema();
-    } elseif (is_front_page()) {
-        starter_ai_organization_schema();
     } elseif (is_archive()) {
         starter_ai_collection_schema();
     } elseif (is_search()) {

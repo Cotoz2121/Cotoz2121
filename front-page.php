@@ -96,9 +96,10 @@ get_header();
 
             <?php
             $featured_query = new WP_Query([
-                'posts_per_page' => 6,
-                'post_status'    => 'publish',
+                'posts_per_page'      => 6,
+                'post_status'         => 'publish',
                 'ignore_sticky_posts' => false,
+                'no_found_rows'       => true,
             ]);
 
             if ($featured_query->have_posts()) :

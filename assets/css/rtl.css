@@ -58,25 +58,11 @@ html[dir="rtl"] .entry-meta {
     flex-direction: row-reverse;
 }
 
-/* Blockquote border */
-html[dir="rtl"] blockquote {
-    border-right: 4px solid var(--color-primary);
-    border-left: none;
-    border-radius: var(--radius-md) 0 0 var(--radius-md);
-}
+/* Blockquote border - uses logical properties from base styles, no override needed */
 
-/* Comment list indentation */
-html[dir="rtl"] .comment-list .children {
-    padding-right: var(--space-8);
-    padding-left: 0;
-}
+/* Comment list indentation - uses logical properties from base styles, no override needed */
 
-/* Widget list */
-html[dir="rtl"] .entry-content ul,
-html[dir="rtl"] .entry-content ol {
-    padding-right: var(--space-6);
-    padding-left: 0;
-}
+/* Widget list - uses logical properties from base styles, no override needed */
 
 /* Back to top - position */
 html[dir="rtl"] .back-to-top {

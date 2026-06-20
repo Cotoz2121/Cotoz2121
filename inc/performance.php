@@ -39,7 +39,7 @@ add_action('wp_head', 'starter_ai_dns_prefetch', 0);
 function starter_ai_preload_resources(): void
 {
     // Preconnect to Google Fonts
-    echo '<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>' . "\n";
+    echo '<link rel="preconnect" href="https://fonts.googleapis.com">' . "\n";
     echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
 
     // Preload main CSS
@@ -97,7 +97,7 @@ function starter_ai_critical_css(): void
     [data-theme="dark"] .zuhal-logo-dark{display:block}
     .skip-link{position:absolute;top:-100%;z-index:700;background:#2563eb;color:#fff;padding:.5rem 1rem}
     .skip-link:focus{top:0}
-    .hero-section{padding:4rem 0 5rem;background:linear-gradient(135deg,#fff,#f8fafc,#f5f3ff)}
+    .hero-section{padding:4rem 0 5rem;background:linear-gradient(135deg,#fff,#f8fafc,#f5f3ff);contain:layout style}
     .hero-title{font-size:clamp(2.5rem,1.8rem+3.5vw,3.75rem);font-weight:800;line-height:1.1}
     h1,h2,h3,h4,h5,h6{font-weight:700;line-height:1.25}
     a{color:#2563eb;text-decoration:none}
@@ -122,6 +122,21 @@ function starter_ai_lazy_load_images(string $content): string
     $content = preg_replace(
         '/<img((?!.*decoding)[^>]*)>/i',
         '<img$1 decoding="async">',
+        $content
+    );
+
+    // Add fetchpriority="low" to below-fold images
+    $content = preg_replace_callback(
+        '/<img([^>]*)>/i',
+        function ($matches) {
+            static $img_count = 0;
+            $img_count++;
+            $attrs = $matches[1];
+            if ($img_count > 1 && ! str_contains($attrs, 'fetchpriority')) {
+                $attrs .= ' fetchpriority="low"';
+            }
+            return '<img' . $attrs . '>';
+        },
         $content
     );
 
@@ -245,6 +260,14 @@ function starter_ai_content_visibility_css(): void
         content-visibility: auto;
         contain-intrinsic-size: auto 500px;
     }
+    .sidebar {
+        content-visibility: auto;
+        contain-intrinsic-size: auto 800px;
+    }
+    .post-card,
+    .featured-card {
+        contain: layout style;
+    }
     </style>
     <?php
 }
@@ -272,3 +295,68 @@ function starter_ai_optimize_queries(WP_Query $query): void
     }
 }
 add_action('pre_get_posts', 'starter_ai_optimize_queries');
+
+/**
+ * Optimize image compression quality (default WordPress is 82).
+ */
+function starter_ai_image_quality(int $quality): int
+{
+    return 75;
+}
+add_filter('jpeg_quality', 'starter_ai_image_quality');
+add_filter('wp_editor_set_quality', 'starter_ai_image_quality');
+
+/**
+ * Add image size attributes to prevent CLS (Cumulative Layout Shift).
+ */
+function starter_ai_add_image_dimensions(string $content): string
+{
+    if (is_admin() || is_feed()) {
+        return $content;
+    }
+
+    return preg_replace_callback(
+        '/<img([^>]+)>/i',
+        function (array $matches): string {
+            $attrs = $matches[1];
+            if (preg_match('/width\s*=/', $attrs) && preg_match('/height\s*=/', $attrs)) {
+                return $matches[0];
+            }
+            if (preg_match('/src=["\']([^"\']+)["\']/i', $attrs, $src)) {
+                $image_path = str_replace(
+                    STARTER_AI_URI,
+                    STARTER_AI_DIR,
+                    $src[1]
+                );
+                if (file_exists($image_path)) {
+                    $size = @getimagesize($image_path);
+                    if ($size) {
+                        if (! preg_match('/width\s*=/', $attrs)) {
+                            $attrs .= ' width="' . $size[0] . '"';
+                        }
+                        if (! preg_match('/height\s*=/', $attrs)) {
+                            $attrs .= ' height="' . $size[1] . '"';
+                        }
+                    }
+                }
+            }
+            return '<img' . $attrs . '>';
+        },
+        $content
+    );
+}
+add_filter('the_content', 'starter_ai_add_image_dimensions', 98);
+
+/**
+ * Disable self-pingbacks.
+ */
+function starter_ai_disable_self_pingback(array &$links): void
+{
+    $home_url = home_url();
+    foreach ($links as $key => $link) {
+        if (str_starts_with($link, $home_url)) {
+            unset($links[$key]);
+        }
+    }
+}
+add_action('pre_ping', 'starter_ai_disable_self_pingback');

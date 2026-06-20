@@ -61,6 +61,13 @@ function starter_ai_setup(): void
     add_image_size('starter-ai-card', 600, 400, true);
     add_image_size('starter-ai-thumbnail', 150, 150, true);
 
+    // Enable WebP upload support
+    add_filter('mime_types', function (array $mimes): array {
+        $mimes['webp'] = 'image/webp';
+        $mimes['avif'] = 'image/avif';
+        return $mimes;
+    });
+
     register_nav_menus([
         'primary'  => esc_html__('Primary Menu', 'starter-ai'),
         'footer'   => esc_html__('Footer Menu', 'starter-ai'),

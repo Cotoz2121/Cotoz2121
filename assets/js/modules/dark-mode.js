@@ -23,10 +23,10 @@ export function initDarkMode(signal) {
         html.setAttribute('data-theme', theme);
         localStorage.setItem(STORAGE_KEY, theme);
 
-        // Update meta theme-color
-        const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-        if (metaThemeColor) {
-            metaThemeColor.content = theme === 'dark' ? '#020617' : '#2563eb';
+        // Update all meta theme-color tags
+        const metaThemeColors = document.querySelectorAll('meta[name="theme-color"]');
+        for (const meta of metaThemeColors) {
+            meta.content = theme === 'dark' ? '#020617' : '#2563eb';
         }
     };
 
