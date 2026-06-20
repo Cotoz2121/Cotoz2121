@@ -132,6 +132,10 @@
     transition: all var(--transition-base);
 }
 
+.search-overlay[hidden] {
+    display: none;
+}
+
 .search-overlay.is-active {
     transform: translateY(0);
     opacity: 1;

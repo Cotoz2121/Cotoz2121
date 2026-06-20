@@ -18,9 +18,8 @@ export function initNavigation(signal) {
     // Mobile menu
     if (menuToggle && mobileOverlay) {
         const openMenu = () => {
+            mobileOverlay.removeAttribute('hidden');
             mobileOverlay.classList.add('is-active');
-            mobileOverlay.setAttribute('aria-hidden', 'false');
-            mobileOverlay.removeAttribute('inert');
             menuToggle.setAttribute('aria-expanded', 'true');
             document.body.style.overflow = 'hidden';
 
@@ -31,8 +30,7 @@ export function initNavigation(signal) {
 
         const closeMenu = () => {
             mobileOverlay.classList.remove('is-active');
-            mobileOverlay.setAttribute('aria-hidden', 'true');
-            mobileOverlay.setAttribute('inert', '');
+            mobileOverlay.setAttribute('hidden', '');
             menuToggle.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = '';
             menuToggle.focus();
@@ -80,15 +78,14 @@ export function initNavigation(signal) {
     if (searchToggle && searchOverlay) {
         searchToggle.addEventListener('click', () => {
             const isActive = searchOverlay.classList.toggle('is-active');
-            searchOverlay.setAttribute('aria-hidden', String(!isActive));
             searchToggle.setAttribute('aria-expanded', String(isActive));
 
             if (isActive) {
-                searchOverlay.removeAttribute('inert');
+                searchOverlay.removeAttribute('hidden');
                 const input = searchOverlay.querySelector('.search-field');
                 input?.focus();
             } else {
-                searchOverlay.setAttribute('inert', '');
+                searchOverlay.setAttribute('hidden', '');
             }
         }, { signal });
 
@@ -96,8 +93,7 @@ export function initNavigation(signal) {
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && searchOverlay.classList.contains('is-active')) {
                 searchOverlay.classList.remove('is-active');
-                searchOverlay.setAttribute('aria-hidden', 'true');
-                searchOverlay.setAttribute('inert', '');
+                searchOverlay.setAttribute('hidden', '');
                 searchToggle.setAttribute('aria-expanded', 'false');
                 searchToggle.focus();
             }
@@ -145,8 +141,7 @@ export function initNavigation(signal) {
     mediaQuery.addEventListener('change', (e) => {
         if (e.matches && mobileOverlay?.classList.contains('is-active')) {
             mobileOverlay.classList.remove('is-active');
-            mobileOverlay.setAttribute('aria-hidden', 'true');
-            mobileOverlay.setAttribute('inert', '');
+            mobileOverlay.setAttribute('hidden', '');
             menuToggle?.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = '';
         }

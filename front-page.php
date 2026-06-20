@@ -115,7 +115,7 @@ get_header();
                 ?>
                 <article class="<?php echo esc_attr($card_class); ?>" itemscope itemtype="https://schema.org/Article">
                     <?php if (has_post_thumbnail()) : ?>
-                    <a href="<?php the_permalink(); ?>" class="card-thumbnail">
+                    <a href="<?php the_permalink(); ?>" class="card-thumbnail" aria-label="<?php the_title_attribute(); ?>">
                         <?php
                         $img_size = $counter === 1 ? 'starter-ai-featured' : 'starter-ai-card';
                         the_post_thumbnail($img_size, [

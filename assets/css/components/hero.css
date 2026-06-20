@@ -161,8 +161,10 @@
 }
 
 .featured-card .card-category a {
-    display: inline-block;
-    padding: var(--space-1) var(--space-3);
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+    padding: var(--space-2) var(--space-4);
     background: var(--color-primary);
     color: var(--color-white);
     font-size: var(--text-xs);

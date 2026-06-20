@@ -41,6 +41,15 @@ function starter_ai_output_meta_description(): void
  */
 function starter_ai_get_meta_description(): string
 {
+    if (is_front_page() || is_home()) {
+        $site_description = get_bloginfo('description');
+        if ($site_description) {
+            return sanitize_text_field($site_description);
+        }
+        $site_name = get_bloginfo('name');
+        return sanitize_text_field($site_name ?: '');
+    }
+
     if (is_singular()) {
         $post = get_queried_object();
         if ($post instanceof WP_Post) {
@@ -58,6 +67,9 @@ function starter_ai_get_meta_description(): string
         if ($term instanceof WP_Term && ! empty($term->description)) {
             return sanitize_text_field(wp_trim_words($term->description, 30));
         }
+        if ($term instanceof WP_Term) {
+            return sanitize_text_field($term->name . ' - ' . get_bloginfo('name'));
+        }
     }
 
     if (is_author()) {
@@ -71,7 +83,7 @@ function starter_ai_get_meta_description(): string
     }
 
     $site_description = get_bloginfo('description');
-    return $site_description ? sanitize_text_field($site_description) : '';
+    return $site_description ? sanitize_text_field($site_description) : sanitize_text_field(get_bloginfo('name'));
 }
 
 /**
